@@ -1,4 +1,4 @@
-// Estrelas
+// === Fundo com estrelas ===
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 let w, h, stars = [];
@@ -57,10 +57,24 @@ window.addEventListener('resize', resize);
 resize();
 draw();
 
-// Interação: mover o título para cima ao clicar no botão
+// === Interação com botão "Barcarena" ===
 const btn = document.getElementById('btn-barcarena');
 const content = document.querySelector('.content');
 
 btn.addEventListener('click', () => {
+  // Mover o título para o topo
   content.classList.add('mover-topo');
+
+  // Esconder o botão com efeito suave
+  btn.style.transition = 'opacity 0.6s ease';
+  btn.style.opacity = 0;
+  setTimeout(() => {
+    btn.style.display = 'none';
+  }, 600);
+
+  // Vibração leve nas estrelas (efeito visual)
+  stars.forEach(star => {
+    star.dx += (Math.random() - 0.5) * 0.8;
+    star.dy += (Math.random() - 0.5) * 0.8;
+  });
 });
