@@ -32,25 +32,34 @@ canvas#stars {
   padding: 20px;
   width: 90%;
   max-width: 500px;
+  white-space: nowrap;
 }
 
 .content h1 {
-  font-size: 10vw; /* Tamanho proporcional à tela */
-  font-weight: bold;
+  font-size: 10vw;
+  font-weight: 800;
   letter-spacing: 2px;
+  background: linear-gradient(90deg, #b100ff, #6e00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+  text-transform: uppercase;
 }
 
 .content h2 {
-  font-size: 5vw; /* metade do h1 */
+  font-size: 5vw;
   margin-top: 10px;
-  color: #aaa;
+  color: #c6aaff;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
-/* Responsivo para telas muito pequenas */
+/* Responsivo para telas menores */
 @media (max-width: 400px) {
   .content h1 {
     font-size: 12vw;
   }
+
   .content h2 {
     font-size: 6vw;
   }
