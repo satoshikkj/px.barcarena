@@ -64,3 +64,6 @@ const card = document.querySelector('.card');
 btn.addEventListener('click', () => {
   card.classList.toggle('move-up');
 });
+
+// Ainda não há ação JS obrigatória no card, mas você pode usar este espaço para adicionar animações extras
+console.log("Cartão interativo carregado com sucesso!");
