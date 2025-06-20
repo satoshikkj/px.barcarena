@@ -1,11 +1,15 @@
-// Estrelas
+// Script simples para animar estrelas no canvas
+
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
-let w, h, stars = [];
 
+let w, h;
+let stars = [];
+
+// Cria as estrelas
 function createStars(count) {
   stars = [];
-  for (let i = 0; i < count; i++) {
+  for(let i=0; i < count; i++) {
     stars.push({
       x: Math.random() * w,
       y: Math.random() * h,
@@ -18,6 +22,7 @@ function createStars(count) {
   }
 }
 
+// Ajusta o tamanho do canvas
 function resize() {
   w = window.innerWidth;
   h = window.innerHeight;
@@ -25,16 +30,23 @@ function resize() {
   canvas.height = h * devicePixelRatio;
   canvas.style.width = w + 'px';
   canvas.style.height = h + 'px';
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); // reset transform
   ctx.scale(devicePixelRatio, devicePixelRatio);
   createStars(150);
 }
 
+// Desenha as estrelas
 function draw() {
   ctx.clearRect(0, 0, w, h);
   stars.forEach(star => {
     star.alpha += star.deltaAlpha;
-    if (star.alpha <= 0 || star.alpha >= 1) star.deltaAlpha *= -1;
+    if (star.alpha <= 0) {
+      star.alpha = 0;
+      star.deltaAlpha = -star.deltaAlpha;
+    } else if (star.alpha >= 1) {
+      star.alpha = 1;
+      star.deltaAlpha = -star.deltaAlpha;
+    }
     star.x += star.dx;
     star.y += star.dy;
 
@@ -56,11 +68,3 @@ function draw() {
 window.addEventListener('resize', resize);
 resize();
 draw();
-
-// Interação: mover o título para cima ao clicar no botão
-const btn = document.getElementById('btn-barcarena');
-const content = document.querySelector('.content');
-
-btn.addEventListener('click', () => {
-  content.classList.add('mover-topo');
-});
