@@ -4,11 +4,13 @@
   box-sizing: border-box;
 }
 
-body, html {
+html, body {
   height: 100%;
-  overflow: hidden;
+  width: 100%;
   background-color: black;
-  font-family: Arial, sans-serif;
+  color: white;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  overflow: hidden;
 }
 
 canvas#stars {
@@ -21,21 +23,35 @@ canvas#stars {
 }
 
 .content {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
   text-align: center;
   z-index: 1;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
 }
 
 .content h1 {
-  font-size: 100px;
-  letter-spacing: 3px;
+  font-size: 10vw; /* Tamanho proporcional à tela */
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
 .content h2 {
-  font-size: 50px; /* metade de 100 */
+  font-size: 5vw; /* metade do h1 */
+  margin-top: 10px;
   color: #aaa;
+}
+
+/* Responsivo para telas muito pequenas */
+@media (max-width: 400px) {
+  .content h1 {
+    font-size: 12vw;
+  }
+  .content h2 {
+    font-size: 6vw;
+  }
 }
