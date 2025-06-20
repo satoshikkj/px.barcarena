@@ -60,21 +60,31 @@ draw();
 // === Interação com botão "Barcarena" ===
 const btn = document.getElementById('btn-barcarena');
 const content = document.querySelector('.content');
+const infoFesta = document.getElementById('info-festa');
+const voltarBtn = document.getElementById('voltar-topo');
+const titulo = document.querySelector('h1');
 
 btn.addEventListener('click', () => {
-  // Mover o título para o topo
+  // Mover título para o topo e ocultar botão principal
   content.classList.add('mover-topo');
-
-  // Esconder o botão com efeito suave
   btn.style.transition = 'opacity 0.6s ease';
   btn.style.opacity = 0;
   setTimeout(() => {
     btn.style.display = 'none';
   }, 600);
 
-  // Vibração leve nas estrelas (efeito visual)
+  // Efeito nas estrelas
   stars.forEach(star => {
     star.dx += (Math.random() - 0.5) * 0.8;
     star.dy += (Math.random() - 0.5) * 0.8;
   });
+
+  // Mostrar tela extra com animação
+  infoFesta.classList.add('show');
+  infoFesta.scrollIntoView({ behavior: 'smooth' });
+  titulo.classList.add('mover-topo');
+});
+
+voltarBtn.addEventListener('click', () => {
+  document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
 });
