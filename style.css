@@ -1,99 +1,150 @@
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body, html {
+html, body {
   height: 100%;
   width: 100%;
-  background: radial-gradient(circle at center, #1c003d, #000000);
-  color: #d6ccff;
+  background-color: #000;
+  color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: hidden;
-  position: relative;
-}
-
-#stars {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  z-index: 0;
-  background: transparent;
-}
-
-.content {
-  position: relative;
-  z-index: 1;
-  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 0 20px;
-  user-select: none;
-  transition: padding-top 0.8s ease;
 }
 
-h1 {
-  font-size: 4rem;
-  font-weight: 900;
-  letter-spacing: 0.15em;
-  color: #b388ff;
-  text-shadow:
-    0 0 10px #b388ff,
-    0 0 20px #a163f7,
-    0 0 30px #7f39fb;
-  white-space: nowrap;
-  margin-bottom: 1em;
-  transition: all 0.8s ease;
+/* Container principal */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-#btn-barcarena {
-  font-size: 1.5rem;
-  padding: 12px 30px;
-  color: #fff;
-  background-color: #7f39fb;
-  border: none;
-  border-radius: 40px;
-  cursor: pointer;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  box-shadow:
-    0 0 10px #a163f7,
-    0 0 20px #b388ff;
-  transition: all 0.3s ease;
+/* Card base */
+.card {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  perspective: 1000px;
+  transition: transform 0.6s ease;
 }
 
-#btn-barcarena:hover {
-  background-color: #b388ff;
-  box-shadow:
-    0 0 20px #b388ff,
-    0 0 30px #d6ccff;
-  transform: scale(1.05);
+/* Animação ao clicar (movimento suave para cima) */
+.card.move-up {
+  transform: translateY(-100px);
 }
 
-/* Quando o botão é clicado, mover o h1 para o topo */
-.mover-topo h1 {
+/* Conteúdo do card */
+.content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+
+/* Lado de trás do card */
+.back, .front {
   position: absolute;
-  top: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
-/* Responsivo */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 2.8rem;
-    letter-spacing: 0.1em;
-  }
-  #btn-barcarena {
-    font-size: 1.2rem;
-    padding: 10px 20px;
-  }
+/* Parte de trás */
+.back {
+  background-color: #222;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateY(180deg);
+}
+
+/* Conteúdo de trás */
+.back-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.back-content svg {
+  margin-bottom: 15px;
+}
+
+.back-content strong {
+  font-size: 1.2rem;
+}
+
+/* Parte da frente */
+.front {
+  background: linear-gradient(135deg, #4e00c2, #8e2de2);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotateY(0deg);
+}
+
+/* Imagem decorativa */
+.img {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+.circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+}
+
+.circle#right {
+  top: 10px;
+  left: 30px;
+}
+
+.circle#bottom {
+  top: 50px;
+  left: 15px;
+}
+
+/* Conteúdo da frente */
+.front-content {
+  text-align: center;
+}
+
+.badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.description .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 1rem;
+}
+
+.card-footer {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  opacity: 0.9;
+  color: #f0f0f0;
 }
