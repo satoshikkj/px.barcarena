@@ -1,4 +1,4 @@
-// Estrelas animadas no background
+// Estrelas
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 let w, h, stars = [];
@@ -57,13 +57,10 @@ window.addEventListener('resize', resize);
 resize();
 draw();
 
-// Interação botão "Barcarena" para subir o card suavemente
+// Interação: mover o título para cima ao clicar no botão
 const btn = document.getElementById('btn-barcarena');
-const card = document.querySelector('.card');
+const content = document.querySelector('.content');
 
 btn.addEventListener('click', () => {
-  card.classList.toggle('move-up');
+  content.classList.add('mover-topo');
 });
-
-// Ainda não há ação JS obrigatória no card, mas você pode usar este espaço para adicionar animações extras
-console.log("Cartão interativo carregado com sucesso!");
