@@ -1,11 +1,9 @@
-/* Reset básico */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Fundo preto com degrade roxo */
 body, html {
   height: 100%;
   width: 100%;
@@ -16,7 +14,6 @@ body, html {
   position: relative;
 }
 
-/* Canvas ocupa tudo */
 #stars {
   position: fixed;
   top: 0; left: 0;
@@ -27,7 +24,6 @@ body, html {
   background: transparent;
 }
 
-/* Conteúdo centralizado */
 .content {
   position: relative;
   z-index: 1;
@@ -39,9 +35,9 @@ body, html {
   text-align: center;
   padding: 0 20px;
   user-select: none;
+  transition: padding-top 0.8s ease;
 }
 
-/* Título PROJETO X em uma linha só, destaque roxo com sombra */
 h1 {
   font-size: 4rem;
   font-weight: 900;
@@ -51,45 +47,53 @@ h1 {
     0 0 10px #b388ff,
     0 0 20px #a163f7,
     0 0 30px #7f39fb;
-  white-space: nowrap; /* força ficar em uma linha */
-  margin-bottom: 0.3em;
+  white-space: nowrap;
+  margin-bottom: 1em;
+  transition: all 0.8s ease;
 }
 
-/* Subtítulo Barcarena com estilo diferenciado */
-h2 {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #e0c3fc;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  padding: 6px 20px;
-  border: 2px solid #b388ff;
-  border-radius: 30px;
-  box-shadow:
-    0 0 8px #b388ff,
-    inset 0 0 10px #9a55ff;
-  transition: all 0.3s ease;
-  cursor: default;
-}
-
-h2:hover {
+#btn-barcarena {
+  font-size: 1.5rem;
+  padding: 12px 30px;
   color: #fff;
-  background: #7f39fb;
-  border-color: #7f39fb;
+  background-color: #7f39fb;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
   box-shadow:
-    0 0 15px #7f39fb,
-    inset 0 0 15px #b388ff;
+    0 0 10px #a163f7,
+    0 0 20px #b388ff;
+  transition: all 0.3s ease;
 }
 
-/* Responsividade simples */
+#btn-barcarena:hover {
+  background-color: #b388ff;
+  box-shadow:
+    0 0 20px #b388ff,
+    0 0 30px #d6ccff;
+  transform: scale(1.05);
+}
+
+/* Quando o botão é clicado, mover o h1 para o topo */
+.mover-topo h1 {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+}
+
+/* Responsivo */
 @media (max-width: 600px) {
   h1 {
     font-size: 2.8rem;
     letter-spacing: 0.1em;
   }
-  h2 {
-    font-size: 1.4rem;
-    letter-spacing: 0.15em;
-    padding: 5px 14px;
+  #btn-barcarena {
+    font-size: 1.2rem;
+    padding: 10px 20px;
   }
 }
