@@ -1,66 +1,95 @@
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+/* Fundo preto com degrade roxo */
+body, html {
   height: 100%;
   width: 100%;
-  background-color: black;
-  color: white;
-  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  background: radial-gradient(circle at center, #1c003d, #000000);
+  color: #d6ccff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
+  position: relative;
 }
 
-canvas#stars {
+/* Canvas ocupa tudo */
+#stars {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   height: 100%;
+  display: block;
   z-index: 0;
+  background: transparent;
 }
 
+/* Conteúdo centralizado */
 .content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  position: relative;
   z-index: 1;
-  padding: 20px;
-  width: 90%;
-  max-width: 500px;
-  white-space: nowrap;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  user-select: none;
 }
 
-.content h1 {
-  font-size: 10vw;
-  font-weight: 800;
-  letter-spacing: 2px;
-  background: linear-gradient(90deg, #b100ff, #6e00ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  white-space: nowrap;
+/* Título PROJETO X em uma linha só, destaque roxo com sombra */
+h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: #b388ff;
+  text-shadow:
+    0 0 10px #b388ff,
+    0 0 20px #a163f7,
+    0 0 30px #7f39fb;
+  white-space: nowrap; /* força ficar em uma linha */
+  margin-bottom: 0.3em;
+}
+
+/* Subtítulo Barcarena com estilo diferenciado */
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #e0c3fc;
   text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 6px 20px;
+  border: 2px solid #b388ff;
+  border-radius: 30px;
+  box-shadow:
+    0 0 8px #b388ff,
+    inset 0 0 10px #9a55ff;
+  transition: all 0.3s ease;
+  cursor: default;
 }
 
-.content h2 {
-  font-size: 5vw;
-  margin-top: 10px;
-  color: #c6aaff;
-  font-weight: 500;
-  letter-spacing: 1px;
+h2:hover {
+  color: #fff;
+  background: #7f39fb;
+  border-color: #7f39fb;
+  box-shadow:
+    0 0 15px #7f39fb,
+    inset 0 0 15px #b388ff;
 }
 
-/* Responsivo para telas menores */
-@media (max-width: 400px) {
-  .content h1 {
-    font-size: 12vw;
+/* Responsividade simples */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.8rem;
+    letter-spacing: 0.1em;
   }
-
-  .content h2 {
-    font-size: 6vw;
+  h2 {
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+    padding: 5px 14px;
   }
 }
