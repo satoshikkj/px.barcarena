@@ -57,34 +57,42 @@ window.addEventListener('resize', resize);
 resize();
 draw();
 
-// === Interação com botão "Barcarena" ===
-const btn = document.getElementById('btn-barcarena');
-const content = document.querySelector('.content');
-const infoFesta = document.getElementById('info-festa');
-const voltarBtn = document.getElementById('voltar-topo');
-const titulo = document.querySelector('h1');
+// === Interações ===
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById('btn-barcarena');
+  const content = document.querySelector('.content');
+  const infoFesta = document.getElementById('info-festa');
+  const voltarBtn = document.getElementById('voltar-topo');
+  const titulo = document.querySelector('h1');
 
-btn.addEventListener('click', () => {
-  // Mover título para o topo e ocultar botão principal
-  content.classList.add('mover-topo');
-  btn.style.transition = 'opacity 0.6s ease';
-  btn.style.opacity = 0;
-  setTimeout(() => {
-    btn.style.display = 'none';
-  }, 600);
+  btn.addEventListener('click', () => {
+    content.classList.add('mover-topo');
+    titulo.classList.add('mover-topo');
 
-  // Efeito nas estrelas
-  stars.forEach(star => {
-    star.dx += (Math.random() - 0.5) * 0.8;
-    star.dy += (Math.random() - 0.5) * 0.8;
+    // Animação no botão
+    btn.style.transition = 'opacity 0.6s ease';
+    btn.style.opacity = 0;
+    setTimeout(() => {
+      btn.style.display = 'none';
+    }, 600);
+
+    // Agitar estrelas
+    stars.forEach(star => {
+      star.dx += (Math.random() - 0.5) * 0.8;
+      star.dy += (Math.random() - 0.5) * 0.8;
+    });
+
+    // Mostrar info da festa
+    infoFesta.classList.add('show');
+    setTimeout(() => {
+      infoFesta.scrollIntoView({ behavior: "smooth" });
+    }, 300);
   });
 
-  // Mostrar tela extra com animação
-  infoFesta.classList.add('show');
-  infoFesta.scrollIntoView({ behavior: 'smooth' });
-  titulo.classList.add('mover-topo');
-});
-
-voltarBtn.addEventListener('click', () => {
-  document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+  // Botão de voltar ao topo (se existir no HTML)
+  if (voltarBtn) {
+    voltarBtn.addEventListener('click', () => {
+      document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
 });
