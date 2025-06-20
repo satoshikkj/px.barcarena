@@ -16,8 +16,21 @@ html, body {
   justify-content: center;
 }
 
+/* Estrelas no fundo */
+canvas#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
 /* Container centralizado */
 .card-container {
+  position: relative;
+  z-index: 1;
   perspective: 1000px;
 }
 
