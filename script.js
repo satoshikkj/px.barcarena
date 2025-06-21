@@ -59,7 +59,7 @@ window.addEventListener('resize', resize);
 resize();
 drawStars();
 
-// === Interações DOM ===
+// === Interações DOM + Frases + Contador ===
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("btn-barcarena");
   const content = document.querySelector(".content");
@@ -129,4 +129,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setInterval(mostrarProximaFrase, 5000);
   mostrarProximaFrase();
+
+  // === Contador Regressivo para o evento ===
+  function iniciarContador(dataEvento) {
+    const fim = new Date(dataEvento).getTime();
+
+    setInterval(() => {
+      const agora = new Date().getTime();
+      const distancia = fim - agora;
+
+      const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+      document.getElementById('dias').innerText = dias.toString().padStart(2, '0');
+      document.getElementById('horas').innerText = horas.toString().padStart(2, '0');
+      document.getElementById('minutos').innerText = minutos.toString().padStart(2, '0');
+      document.getElementById('segundos').innerText = segundos.toString().padStart(2, '0');
+    }, 1000);
+  }
+
+  iniciarContador("2025-12-06T22:00:00"); // data e hora do evento
 });
