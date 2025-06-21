@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fraseElemento.textContent = frases[fraseIndex];
     fraseElemento.classList.remove("aparecendo");
-    void fraseElemento.offsetWidth; // Força reflow
+    void fraseElemento.offsetWidth;
     fraseElemento.classList.add("aparecendo");
 
     fraseIndex = (fraseIndex + 1) % frases.length;
@@ -150,5 +150,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
 
-  iniciarContador("2025-12-06T09:00:00"); // Início da festa 06/12/2025 às 09h
+  iniciarContador("2025-12-06T09:00:00");
+
+  // === Preço do ingresso por lote ===
+  function calcularLote() {
+    const hoje = new Date();
+    const precoEl = document.getElementById('preco');
+
+    const lote1Fim = new Date("2025-08-01");
+    const lote2Fim = new Date("2025-10-01");
+    const evento = new Date("2025-12-06");
+
+    if (hoje < lote1Fim) {
+      precoEl.innerText = "R$ 49,99 (1º Lote)";
+    } else if (hoje < lote2Fim) {
+      precoEl.innerText = "R$ 79,99 (2º Lote)";
+    } else if (hoje < evento) {
+      precoEl.innerText = "R$ 109,99 (3º Lote)";
+    } else {
+      precoEl.innerText = "Evento encerrado";
+    }
+  }
+
+  calcularLote(); // executa na hora que carregar a página
 });
