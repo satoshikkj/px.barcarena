@@ -39,7 +39,6 @@ function drawStars() {
     star.x += star.dx;
     star.y += star.dy;
 
-    // Reposiciona se sair da tela
     if (star.x < 0) star.x = w;
     else if (star.x > w) star.x = 0;
     if (star.y < 0) star.y = h;
@@ -60,14 +59,16 @@ window.addEventListener('resize', resize);
 resize();
 drawStars();
 
-// === Interações ===
+// === Interações DOM ===
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("btn-barcarena");
   const content = document.querySelector(".content");
   const info = document.getElementById("info-festa");
   const voltar = document.getElementById("voltar-topo");
   const titulo = document.querySelector("h1") || document.getElementById("titulo");
+  const fraseElemento = document.getElementById("frase-romantica");
 
+  // Botão para ativar animações e mostrar info
   btn?.addEventListener("click", () => {
     content?.classList.add("mover-topo");
     titulo?.classList.add("mover-topo");
@@ -78,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.style.display = "none";
     }, 600);
 
-    // Agita as estrelas ao clicar
+    // Agita as estrelas
     stars.forEach(star => {
       star.dx += (Math.random() - 0.5) * 0.8;
       star.dy += (Math.random() - 0.5) * 0.8;
@@ -90,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 400);
   });
 
+  // Botão voltar ao topo
   voltar?.addEventListener("click", () => {
     info?.classList.remove("show");
     content?.classList.remove("mover-topo");
@@ -102,4 +104,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
+
+  // === Frases Românticas Animadas ===
+  const frases = [
+    "Se amor tivesse um nome, seria o seu.",
+    "Perfeição é ficar olhando suas fotos.",
+    "Você é o meu lugar favorito.",
+    "Te encontrar foi como achar uma estrela cadente.",
+    "O universo sorriu quando você nasceu."
+  ];
+
+  let fraseIndex = 0;
+
+  function mostrarProximaFrase() {
+    if (!fraseElemento) return;
+
+    fraseElemento.textContent = frases[fraseIndex];
+    fraseElemento.classList.remove("aparecendo");
+    void fraseElemento.offsetWidth; // Força reflow
+    fraseElemento.classList.add("aparecendo");
+
+    fraseIndex = (fraseIndex + 1) % frases.length;
+  }
+
+  setInterval(mostrarProximaFrase, 5000);
+  mostrarProximaFrase();
 });
