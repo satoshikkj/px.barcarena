@@ -150,5 +150,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
 
-  iniciarContador("2025-12-06T22:00:00"); // data e hora do evento
+iniciarContador("2025-12-06T09:00:00"); // data e hora do evento
 });
