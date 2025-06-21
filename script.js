@@ -59,7 +59,7 @@ window.addEventListener('resize', resize);
 resize();
 drawStars();
 
-// === Interações DOM ===
+// === Interações DOM + Frases + Contador ===
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("btn-barcarena");
   const content = document.querySelector(".content");
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fraseElemento.textContent = frases[fraseIndex];
     fraseElemento.classList.remove("aparecendo");
-    void fraseElemento.offsetWidth;
+    void fraseElemento.offsetWidth; // Força reflow
     fraseElemento.classList.add("aparecendo");
 
     fraseIndex = (fraseIndex + 1) % frases.length;
@@ -130,13 +130,23 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(mostrarProximaFrase, 5000);
   mostrarProximaFrase();
 
-  // === Contador até o evento ===
+  // === Contador Regressivo para o evento ===
   function iniciarContador(dataEvento) {
     const fim = new Date(dataEvento).getTime();
 
-    setInterval(() => {
+    function atualizarContador() {
       const agora = new Date().getTime();
       const distancia = fim - agora;
+
+      if (distancia <= 0) {
+        // Evento chegou ou passou: zera tudo e para o intervalo
+        document.getElementById('dias').innerText = '00';
+        document.getElementById('horas').innerText = '00';
+        document.getElementById('minutos').innerText = '00';
+        document.getElementById('segundos').innerText = '00';
+        clearInterval(intervalo);
+        return;
+      }
 
       const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
       const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -147,30 +157,11 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById('horas').innerText = horas.toString().padStart(2, '0');
       document.getElementById('minutos').innerText = minutos.toString().padStart(2, '0');
       document.getElementById('segundos').innerText = segundos.toString().padStart(2, '0');
-    }, 1000);
-  }
-
-  iniciarContador("2025-12-06T09:00:00");
-
-  // === Preço do ingresso por lote ===
-  function calcularLote() {
-    const hoje = new Date();
-    const precoEl = document.getElementById('preco');
-
-    const lote1Fim = new Date("2025-08-01");
-    const lote2Fim = new Date("2025-10-01");
-    const evento = new Date("2025-12-06");
-
-    if (hoje < lote1Fim) {
-      precoEl.innerText = "R$ 49,99 (1º Lote)";
-    } else if (hoje < lote2Fim) {
-      precoEl.innerText = "R$ 79,99 (2º Lote)";
-    } else if (hoje < evento) {
-      precoEl.innerText = "R$ 109,99 (3º Lote)";
-    } else {
-      precoEl.innerText = "Evento encerrado";
     }
+
+    atualizarContador(); // Atualiza na hora de iniciar
+    const intervalo = setInterval(atualizarContador, 1000);
   }
 
-  calcularLote(); // executa na hora que carregar a página
+  iniciarContador("2025-12-06T09:00:00"); // data e hora do evento
 });
