@@ -68,6 +68,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const titulo = document.querySelector("h1") || document.getElementById("titulo");
   const fraseElemento = document.getElementById("frase-romantica");
 
+  // === INCLUIR SEÇÃO ingresso no DOM dentro do container content ===
+  if (content) {
+    const ingressoSection = document.createElement("section");
+    ingressoSection.id = "ingresso";
+    ingressoSection.innerHTML = `
+      <h2>Compre seu ingresso</h2>
+      <p id="preco">R$ --</p>
+    `;
+    content.appendChild(ingressoSection);
+  }
+
   // Botão para ativar animações e mostrar info
   btn?.addEventListener("click", () => {
     content?.classList.add("mover-topo");
