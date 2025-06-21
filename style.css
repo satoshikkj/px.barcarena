@@ -274,6 +274,27 @@ h1, h1#titulo {
   background-color: #555;
 }
 
+/* Seção Contador */
+#contador {
+  text-align: center;
+  margin-top: 40px;
+  color: #fff;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.timer div {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
 /* Responsivo */
 @media (max-width: 600px) {
   h1, h1#titulo {
@@ -285,4 +306,14 @@ h1, h1#titulo {
     font-size: 1.2rem;
     padding: 10px 20px;
   }
-    }
+
+  .timer {
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.5rem;
+  }
+
+  .timer div {
+    padding: 8px 15px;
+  }
+}
