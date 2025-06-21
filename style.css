@@ -5,45 +5,48 @@
   box-sizing: border-box;
 }
 
-body, html {
+html, body {
   height: 100%;
   width: 100%;
   background: radial-gradient(circle at center, #1c003d, #000000);
   color: #d6ccff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Audiowide', sans-serif;
   overflow-x: hidden;
   position: relative;
   scroll-behavior: smooth;
 }
 
 /* Estrelas */
+canvas#stars,
 #stars {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
   z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
   background: transparent;
+  display: block;
 }
 
-/* Conteúdo principal */
+/* Conteúdo central */
 .content {
   position: relative;
   z-index: 1;
+  text-align: center;
+  padding: 100px 20px 50px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 0 20px;
   user-select: none;
   transition: padding-top 0.8s ease;
 }
 
-h1 {
+/* Título principal */
+h1, h1#titulo {
   font-family: 'Audiowide', cursive;
   font-size: 4rem;
   font-weight: 900;
@@ -53,6 +56,15 @@ h1 {
   white-space: nowrap;
   margin-bottom: 1em;
   transition: all 0.8s ease;
+}
+
+/* Quando botão é clicado, título sobe */
+.mover-topo h1 {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
 }
 
 /* Botão principal */
@@ -98,27 +110,6 @@ h1 {
   50% { transform: translateY(-5px); }
 }
 
-/* Quando botão é clicado, título sobe */
-.mover-topo h1 {
-  position: absolute;
-  top: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
-}
-
-/* Responsivo */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 2.8rem;
-    letter-spacing: 0.1em;
-  }
-  #btn-barcarena {
-    font-size: 1.2rem;
-    padding: 10px 20px;
-  }
-}
-
 /* Botões adicionais */
 .botoes {
   margin-top: 1.5em;
@@ -158,6 +149,14 @@ h1 {
   transform: rotate(15deg) scale(1.1);
 }
 
+.botao-link.instagram {
+  background-color: #e1306c;
+}
+
+.botao-link.whatsapp {
+  background-color: #25d366;
+}
+
 /* Seção de Informações da Festa */
 #info-festa {
   display: none;
@@ -166,10 +165,15 @@ h1 {
   color: #fff;
   text-align: center;
   min-height: 100vh;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 #info-festa.show {
   display: block;
+  opacity: 1;
   animation: fadeIn 1s ease-in;
 }
 
@@ -237,3 +241,32 @@ h1 {
   transform: scale(1.05);
   background: #b388ff;
 }
+
+/* Botão voltar topo */
+#voltar-topo {
+  display: block;
+  margin: 30px auto 0;
+  padding: 10px 20px;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#voltar-topo:hover {
+  background-color: #555;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  h1, h1#titulo {
+    font-size: 2.8rem;
+    letter-spacing: 0.1em;
+  }
+  #btn-barcarena {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+  }
+  }
