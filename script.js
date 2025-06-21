@@ -59,7 +59,7 @@ window.addEventListener('resize', resize);
 resize();
 drawStars();
 
-// === Interações DOM + Frases + Contador ===
+// === Interações DOM ===
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("btn-barcarena");
   const content = document.querySelector(".content");
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(mostrarProximaFrase, 5000);
   mostrarProximaFrase();
 
-  // === Contador Regressivo para o evento ===
+  // === Contador até o evento ===
   function iniciarContador(dataEvento) {
     const fim = new Date(dataEvento).getTime();
 
@@ -150,5 +150,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
 
-iniciarContador("2025-12-06T09:00:00"); // data e hora do evento
+  iniciarContador("2025-12-06T09:00:00"); // Início da festa 06/12/2025 às 09h
 });
