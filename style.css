@@ -67,6 +67,21 @@ h1, h1#titulo {
   margin: 0;
 }
 
+/* Frases Românticas Animadas */
+#frase-romantica {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.6rem;
+  color: #fff;
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+#frase-romantica.aparecendo {
+  opacity: 1;
+}
+
 /* Botão principal */
 #btn-barcarena {
   font-size: 1.5rem;
@@ -265,8 +280,9 @@ h1, h1#titulo {
     font-size: 2.8rem;
     letter-spacing: 0.1em;
   }
+
   #btn-barcarena {
     font-size: 1.2rem;
     padding: 10px 20px;
   }
-  }
+    }
