@@ -64,14 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const content = document.querySelector(".content");
   const info = document.getElementById("info-festa");
   const voltar = document.getElementById("voltar-topo");
-  const titulo = document.querySelector("h1");
+  // Use seletor único para título (adaptado para h1 ou id="titulo" caso exista)
+  const titulo = document.querySelector("h1") || document.getElementById("titulo");
 
-  btn.addEventListener("click", () => {
-    // Sobe conteúdo e título
-    content.classList.add("mover-topo");
-    if (titulo) titulo.classList.add("mover-topo");
+  btn?.addEventListener("click", () => {
+    content?.classList.add("mover-topo");
+    titulo?.classList.add("mover-topo");
 
-    // Animação botão sumindo
     btn.style.transition = "opacity 0.6s ease";
     btn.style.opacity = 0;
     setTimeout(() => {
@@ -84,27 +83,22 @@ document.addEventListener("DOMContentLoaded", () => {
       star.dy += (Math.random() - 0.5) * 0.8;
     });
 
-    // Exibe informações da festa
     setTimeout(() => {
-      info.classList.add("show");
-      info.scrollIntoView({ behavior: "smooth" });
+      info?.classList.add("show");
+      info?.scrollIntoView({ behavior: "smooth" });
     }, 400);
   });
 
-  if (voltar) {
-    voltar.addEventListener("click", () => {
-      // Remove seção e volta ao topo
-      info.classList.remove("show");
-      content.classList.remove("mover-topo");
-      if (titulo) titulo.classList.remove("mover-topo");
+  voltar?.addEventListener("click", () => {
+    info?.classList.remove("show");
+    content?.classList.remove("mover-topo");
+    titulo?.classList.remove("mover-topo");
 
-      // Volta botão principal
-      btn.style.display = "inline-block";
-      setTimeout(() => {
-        btn.style.opacity = 1;
-      }, 10);
+    btn.style.display = "inline-block";
+    setTimeout(() => {
+      btn.style.opacity = 1;
+    }, 10);
 
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 });
