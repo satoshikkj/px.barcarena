@@ -35,9 +35,11 @@ function drawStars() {
   stars.forEach(star => {
     star.alpha += star.deltaAlpha;
     if (star.alpha <= 0 || star.alpha >= 1) star.deltaAlpha *= -1;
+
     star.x += star.dx;
     star.y += star.dy;
 
+    // Reposiciona se sair da tela
     if (star.x < 0) star.x = w;
     else if (star.x > w) star.x = 0;
     if (star.y < 0) star.y = h;
@@ -64,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const content = document.querySelector(".content");
   const info = document.getElementById("info-festa");
   const voltar = document.getElementById("voltar-topo");
-  // Use seletor único para título (adaptado para h1 ou id="titulo" caso exista)
   const titulo = document.querySelector("h1") || document.getElementById("titulo");
 
   btn?.addEventListener("click", () => {
@@ -77,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.style.display = "none";
     }, 600);
 
-    // Agita estrelas
+    // Agita as estrelas ao clicar
     stars.forEach(star => {
       star.dx += (Math.random() - 0.5) * 0.8;
       star.dy += (Math.random() - 0.5) * 0.8;
