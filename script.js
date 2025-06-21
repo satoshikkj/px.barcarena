@@ -30,7 +30,7 @@ function resize() {
   createStars(150);
 }
 
-function draw() {
+function drawStars() {
   ctx.clearRect(0, 0, w, h);
   stars.forEach(star => {
     star.alpha += star.deltaAlpha;
@@ -50,49 +50,61 @@ function draw() {
     ctx.shadowBlur = 4;
     ctx.fill();
   });
-  requestAnimationFrame(draw);
+
+  requestAnimationFrame(drawStars);
 }
 
 window.addEventListener('resize', resize);
 resize();
-draw();
+drawStars();
 
 // === Interações ===
 document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById('btn-barcarena');
-  const content = document.querySelector('.content');
-  const infoFesta = document.getElementById('info-festa');
-  const voltarBtn = document.getElementById('voltar-topo');
-  const titulo = document.querySelector('h1');
+  const btn = document.getElementById("btn-barcarena");
+  const content = document.querySelector(".content");
+  const info = document.getElementById("info-festa");
+  const voltar = document.getElementById("voltar-topo");
+  const titulo = document.querySelector("h1");
 
-  btn.addEventListener('click', () => {
-    content.classList.add('mover-topo');
-    titulo.classList.add('mover-topo');
+  btn.addEventListener("click", () => {
+    // Sobe conteúdo e título
+    content.classList.add("mover-topo");
+    if (titulo) titulo.classList.add("mover-topo");
 
-    // Animação no botão
-    btn.style.transition = 'opacity 0.6s ease';
+    // Animação botão sumindo
+    btn.style.transition = "opacity 0.6s ease";
     btn.style.opacity = 0;
     setTimeout(() => {
-      btn.style.display = 'none';
+      btn.style.display = "none";
     }, 600);
 
-    // Agitar estrelas
+    // Agita estrelas
     stars.forEach(star => {
       star.dx += (Math.random() - 0.5) * 0.8;
       star.dy += (Math.random() - 0.5) * 0.8;
     });
 
-    // Mostrar info da festa
-    infoFesta.classList.add('show');
+    // Exibe informações da festa
     setTimeout(() => {
-      infoFesta.scrollIntoView({ behavior: "smooth" });
-    }, 300);
+      info.classList.add("show");
+      info.scrollIntoView({ behavior: "smooth" });
+    }, 400);
   });
 
-  // Botão de voltar ao topo (se existir no HTML)
-  if (voltarBtn) {
-    voltarBtn.addEventListener('click', () => {
-      document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+  if (voltar) {
+    voltar.addEventListener("click", () => {
+      // Remove seção e volta ao topo
+      info.classList.remove("show");
+      content.classList.remove("mover-topo");
+      if (titulo) titulo.classList.remove("mover-topo");
+
+      // Volta botão principal
+      btn.style.display = "inline-block";
+      setTimeout(() => {
+        btn.style.opacity = 1;
+      }, 10);
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 });
